@@ -1,5 +1,5 @@
-import CategoryItem from "../categoryItem/CategoryItem"
-import "./directory-menu.styles.scss"
+import CategoryItem from "../categoryItem/CategoryItem";
+import "./directory-menu.styles.scss";
 
 const DirectoryMenu = ({ categories }) => {
   return (
@@ -8,7 +8,7 @@ const DirectoryMenu = ({ categories }) => {
         <CategoryItem key={category.id} category={category} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default DirectoryMenu
+export default DirectoryMenu;
