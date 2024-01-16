@@ -3,7 +3,7 @@ import {
   signInWithGooglePopup,
 } from "../../../utils/firebase/FirebaseUtils"
 
-import SignUpForm from "../../molecules/signUpForm/SignUpForm"
+import SignUpForm from "../../organisms/signUpForm/SignUpForm"
 
 const SignIn = () => {
   const logGoogleUser = async () => {
