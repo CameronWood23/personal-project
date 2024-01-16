@@ -1,7 +1,7 @@
-import { Outlet, Link } from "react-router-dom";
-import { Fragment } from "react";
-import { ReactComponent as Logo } from "../../../assets/BitbucketLogo.svg";
-import "./navigation-bar.styles.scss";
+import { Outlet, Link } from "react-router-dom"
+import { Fragment } from "react"
+import { ReactComponent as Logo } from "../../../assets/BitbucketLogo.svg"
+import "./navigation-bar.styles.scss"
 
 const NavigationBar = () => {
   return (
@@ -17,7 +17,7 @@ const NavigationBar = () => {
             <Link className="nav-link" to="/shop">
               SHOP
             </Link>
-            <Link className="nav-link" to="/sign-in">
+            <Link className="nav-link" to="/auth">
               SIGN IN
             </Link>
           </div>
@@ -25,7 +25,7 @@ const NavigationBar = () => {
       </div>
       <Outlet />
     </Fragment>
-  );
-};
+  )
+}
 
-export default NavigationBar;
+export default NavigationBar
