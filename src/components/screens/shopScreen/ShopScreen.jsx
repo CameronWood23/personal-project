@@ -1,16 +1,17 @@
 import { useContext } from "react"
-import ProductCard from "../../molecules/productCard/ProductCard"
-import { ProductContext } from "../../../context/productContext"
+import CategoryRow from "../../organisms/categoryRow/CategoryRow"
+import { CategoriesContext } from "../../../context/categoryContext"
 import "./shop-screen.styles.scss"
 
 const ShopScreen = () => {
-  const { product } = useContext(ProductContext)
+  const { categories } = useContext(CategoriesContext)
 
   return (
-    <div className="products-container">
-      {product.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className="shop-container">
+      {Object.keys(categories).map((key) => {
+        const products = categories[key]
+        return <CategoryRow key={key} title={key} products={products} />
+      })}
     </div>
   )
 }
