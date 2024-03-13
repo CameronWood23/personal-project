@@ -1,14 +1,14 @@
-import React, { Fragment, useContext } from "react"
+import { useContext, Fragment } from "react"
 import { CategoriesContext } from "../../../context/categoryContext"
-import CategoryRow from "../categoryRow/CategoryRow"
+import CategoryRow from "../../organisms/categoryRow/CategoryRow"
 
 const CategoryPreview = () => {
-  const { categories } = useContext(CategoriesContext)
+  const { categoriesMap } = useContext(CategoriesContext)
 
   return (
     <Fragment>
-      {Object.keys(categories).map((title) => {
-        const products = categories[title]
+      {Object.keys(categoriesMap).map((title) => {
+        const products = categoriesMap[title]
         return <CategoryRow key={title} title={title} products={products} />
       })}
     </Fragment>
