@@ -1,21 +1,23 @@
 import { createContext, useState, useEffect } from "react"
+
 import { getCategoriesAndDocuments } from "../utils/firebase/FirebaseUtils"
 
 export const CategoriesContext = createContext({
-  categories: {},
+  categoriesMap: {},
 })
 
 export const CategoriesProvider = ({ children }) => {
-  const [categories, setCategories] = useState({})
-  useEffect(
-    () => async () => {
-      const categoryMap = await getCategoriesAndDocuments("categories")
-      setCategories(categoryMap)
-    },
-    [],
-  )
+  const [categoriesMap, setCategoriesMap] = useState({})
 
-  const value = { categories }
+  useEffect(() => {
+    const getCategoriesMap = async () => {
+      const categoryMap = await getCategoriesAndDocuments()
+      setCategoriesMap(categoryMap)
+    }
+    getCategoriesMap()
+  }, [])
+
+  const value = { categoriesMap }
   return (
     <CategoriesContext.Provider value={value}>
       {children}
