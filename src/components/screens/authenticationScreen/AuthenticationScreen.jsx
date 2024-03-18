@@ -1,13 +1,13 @@
 import SignUpForm from "../../organisms/signUpForm/SignUpForm"
 import SignInForm from "../../organisms/signInForm/SignInForm"
-import "./authentication-screen.styles.scss"
+import { AuthenticationContainer } from "./authenticationScreen.styles.jsx"
 
 const AuthenticationScreen = () => {
   return (
-    <div className="authentication-container">
+    <AuthenticationContainer>
       <SignInForm />
       <SignUpForm />
-    </div>
+    </AuthenticationContainer>
   )
 }
 
