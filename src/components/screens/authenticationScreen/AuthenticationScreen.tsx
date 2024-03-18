@@ -1,8 +1,9 @@
-import SignUpForm from "../../organisms/signUpForm/SignUpForm"
+import React from "react"
 import SignInForm from "../../organisms/signInForm/SignInForm"
-import { AuthenticationContainer } from "./authenticationScreen.styles.jsx"
+import SignUpForm from "../../organisms/signUpForm/SignUpForm"
+import { AuthenticationContainer } from "./authenticationScreen.styles"
 
-const AuthenticationScreen = () => {
+const AuthenticationScreen: React.FC = () => {
   return (
     <AuthenticationContainer>
       <SignInForm />

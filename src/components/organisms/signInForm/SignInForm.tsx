@@ -1,28 +1,30 @@
-import { useState } from "react"
+import React, { ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import FormInput from "../../molecules/formInput/FormInput"
-import Button, { BUTTON_TYPE_CLASSES } from "../../atoms/button/Button"
-
 import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../../utils/firebase/FirebaseUtils"
-
+import Button, { BUTTON_TYPE_CLASSES } from "../../atoms/button/Button"
+import FormInput from "../../molecules/formInput/FormInput"
 import {
   ButtonsContainer,
   SignUpContainer,
   TitleText,
 } from "./signInForm.styles"
 
-const defaultFormFields = {
+interface FormFields {
+  email: string
+  password: string
+}
+
+const defaultFormFields: FormFields = {
   email: "",
   password: "",
 }
 
-const SignInForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields)
+const SignInForm: React.FC = () => {
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields)
   const { email, password } = formFields
-
   const navigate = useNavigate()
 
   const resetFormFields = () => {
@@ -33,7 +35,7 @@ const SignInForm = () => {
     await signInWithGooglePopup()
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     try {
@@ -41,7 +43,7 @@ const SignInForm = () => {
       resetFormFields()
       navigate("/")
       alert("Sign In Successful!")
-    } catch (error) {
+    } catch (error: any) {
       switch (error.code) {
         case "auth/invalid-login-credentials":
           alert("Incorrect Username or Password. Please try again.")
@@ -52,7 +54,7 @@ const SignInForm = () => {
     }
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setFormFields({ ...formFields, [name]: value })
   }
@@ -80,12 +82,8 @@ const SignInForm = () => {
           value={password}
         />
         <ButtonsContainer>
-          <Button type="submit">Sign In</Button>
-          <Button
-            type="button"
-            buttonType={BUTTON_TYPE_CLASSES.google}
-            onClick={signInWithGoogle}
-          >
+          <Button>Sign In</Button>
+          <Button buttonType={"google"} onClick={signInWithGoogle}>
             Google Sign in
           </Button>
         </ButtonsContainer>
