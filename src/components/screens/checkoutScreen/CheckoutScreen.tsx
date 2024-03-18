@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import React, { useContext } from "react"
 import { CartContext } from "../../../context/cartContext"
 import CheckoutItem from "../../molecules/checkoutItem/CheckoutItem"
 import {
@@ -8,7 +8,7 @@ import {
   Total,
 } from "./checkoutScreen.styles"
 
-const CheckoutScreen = () => {
+const CheckoutScreen: React.FC = () => {
   const { cartItems, cartTotal } = useContext(CartContext)
 
   return (
