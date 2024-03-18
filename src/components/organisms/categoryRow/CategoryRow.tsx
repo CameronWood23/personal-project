@@ -1,12 +1,25 @@
+import React from "react"
 import ProductCard from "../../molecules/productCard/ProductCard"
-
 import {
   CategoryContainer,
-  TitleText,
   ProductPreview,
+  TitleText,
 } from "./categoryRow.styles"
 
-const CategoryRow = ({ title, products }) => (
+interface Product {
+  id: string
+  name: string
+  price: number
+  quantity: number
+  imageUrl: string
+}
+
+interface CategoryRowProps {
+  title: string
+  products: Product[]
+}
+
+const CategoryRow: React.FC<CategoryRowProps> = ({ title, products }) => (
   <CategoryContainer>
     <h2>
       <TitleText to={title}>{title.toUpperCase()}</TitleText>

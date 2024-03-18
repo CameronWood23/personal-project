@@ -1,14 +1,21 @@
-import { useContext } from "react"
+import React, { useContext } from "react"
 import { CartContext } from "../../../context/cartContext"
-import Button, { BUTTON_TYPE_CLASSES } from "../../atoms/button/Button"
-import {
-  ProductCartContainer,
-  Footer,
-  Name,
-  Price,
-} from "./productCard.styles.jsx"
+import Button from "../../atoms/button/Button"
+import { Footer, Name, Price, ProductCartContainer } from "./productCard.styles"
 
-const ProductCard = ({ product }) => {
+interface Product {
+  id: string
+  name: string
+  price: number
+  quantity: number
+  imageUrl: string
+}
+
+interface ProductCardProps {
+  product: Product
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { name, price, imageUrl } = product
   const { addItemToCart } = useContext(CartContext)
 
@@ -21,10 +28,7 @@ const ProductCard = ({ product }) => {
         <Name>{name}</Name>
         <Price>{price}</Price>
       </Footer>
-      <Button
-        buttonType={BUTTON_TYPE_CLASSES.inverted}
-        onClick={addProductToCart}
-      >
+      <Button buttonType="inverted" onClick={addProductToCart}>
         Add to Cart
       </Button>
     </ProductCartContainer>

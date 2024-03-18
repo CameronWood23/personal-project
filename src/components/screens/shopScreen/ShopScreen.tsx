@@ -1,8 +1,9 @@
-import { Routes, Route } from "react-router-dom"
-import CategoryPreview from "../../organisms/categoryPreview/CategoryPreview"
+import React from "react"
+import { Route, Routes } from "react-router-dom"
 import Category from "../../organisms/category/Category"
+import CategoryPreview from "../../organisms/categoryPreview/CategoryPreview"
 
-const ShopScreen = () => {
+const ShopScreen: React.FC = () => {
   return (
     <Routes>
       <Route index element={<CategoryPreview />} />
