@@ -1,19 +1,24 @@
 import ProductCard from "../../molecules/productCard/ProductCard"
-import "./category-row.styles.scss"
+
+import {
+  CategoryContainer,
+  TitleText,
+  ProductPreview,
+} from "./categoryRow.styles"
 
 const CategoryRow = ({ title, products }) => (
-  <div className="category-preview-container">
+  <CategoryContainer>
     <h2>
-      <span className="title">{title.toUpperCase()}</span>
+      <TitleText to={title}>{title.toUpperCase()}</TitleText>
     </h2>
-    <div className="preview">
+    <ProductPreview>
       {products
         .filter((_, idx) => idx < 4)
         .map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-    </div>
-  </div>
+    </ProductPreview>
+  </CategoryContainer>
 )
 
 export default CategoryRow
