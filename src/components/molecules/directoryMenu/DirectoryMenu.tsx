@@ -1,7 +1,15 @@
+import React from "react"
 import DirectoryItem from "../directoryItem/DirectoryItem"
-import { DirectoryContainer } from "./directoryMenu.styles.jsx"
+import { DirectoryContainer } from "./directoryMenu.styles"
 
-const categories = [
+interface Category {
+  id: number
+  title: string
+  imageUrl: string
+  route: string
+}
+
+const categories: Category[] = [
   {
     id: 1,
     title: "hats",
@@ -34,7 +42,7 @@ const categories = [
   },
 ]
 
-const DirectoryMenu = () => {
+const DirectoryMenu: React.FC = () => {
   return (
     <DirectoryContainer>
       {categories.map((category) => (
