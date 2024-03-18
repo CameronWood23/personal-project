@@ -1,9 +1,9 @@
-import { Outlet } from "react-router-dom"
-import { Fragment, useContext } from "react"
-import { UserContext } from "../../../context/userContext"
+import React, { Fragment, useContext } from "react"
+import { Link, Outlet } from "react-router-dom"
+// import { ReactComponent as Logo } from "../../../assets/BitbucketLogo.svg"
 import { CartContext } from "../../../context/cartContext"
+import { UserContext } from "../../../context/userContext"
 import { signOutUser } from "../../../utils/firebase/FirebaseUtils"
-import { ReactComponent as Logo } from "../../../assets/BitbucketLogo.svg"
 import CartIcon from "../../atoms/cartIcon/CartIcon"
 import CartDropdown from "../../molecules/cartDropdown/CartDropdown"
 
@@ -11,29 +11,28 @@ import {
   CenteredLinks,
   LogoContainer,
   NavigationContainer,
-  NavLinks,
   NavLinksContainer,
 } from "./navigation.styles"
 
-const NavigationBar = () => {
+const NavigationBar: React.FC = () => {
   const { currentUser } = useContext(UserContext)
   const { isCartOpen } = useContext(CartContext)
+
+  const handleSignOut = () => {
+    signOutUser()
+  }
 
   return (
     <Fragment>
       <NavigationContainer>
-        <LogoContainer to="/">
-          <Logo className="logo" />
-        </LogoContainer>
+        <LogoContainer to="/">{/* <Logo className="logo" /> */}</LogoContainer>
         <NavLinksContainer>
           <CenteredLinks>
-            <NavLinks to="/shop">SHOP</NavLinks>
+            <Link to="/shop">SHOP</Link>
             {currentUser ? (
-              <NavLinks as="span" onClick={signOutUser}>
-                SIGN OUT
-              </NavLinks>
+              <span onClick={handleSignOut}>SIGN OUT</span>
             ) : (
-              <NavLinks to="/auth">SIGN IN</NavLinks>
+              <Link to="/auth">SIGN IN</Link>
             )}
             <CartIcon />
           </CenteredLinks>

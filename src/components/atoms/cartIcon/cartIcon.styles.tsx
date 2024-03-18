@@ -1,11 +1,11 @@
 import styled from "styled-components"
 
-import { ReactComponent as ShoppingIcon } from "../../../assets/ShoppingBagLogo.svg"
+// import { ReactComponent as ShoppingIcon } from "../../../assets/ShoppingBagLogo.svg"
 
-export const ShoppingIconStyle = styled(ShoppingIcon)`
-  width: 24px;
-  height: 24px;
-`
+// export const ShoppingIconStyle = styled(ShoppingIcon)`
+//   width: 24px;
+//   height: 24px;
+// `
 
 export const CartIconContainer = styled.div`
   width: 30px;

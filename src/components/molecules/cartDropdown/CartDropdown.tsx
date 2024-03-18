@@ -1,18 +1,15 @@
-import { useContext } from "react"
+import React, { useContext } from "react"
 import { useNavigate } from "react-router-dom"
-
 import { CartContext } from "../../../context/cartContext"
-
 import Button from "../../atoms/button/Button"
 import CartItem from "../cartItem/CartItem"
-
 import {
   CartDropdownContainer,
-  EmptyMessage,
   CartItems,
+  EmptyMessage,
 } from "./cartDropdown.styles"
 
-const CartDropdown = () => {
+const CartDropdown: React.FC = () => {
   const { cartItems } = useContext(CartContext)
   const navigate = useNavigate()
 

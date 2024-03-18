@@ -4,12 +4,12 @@
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "jsx": "react" // Specify "jsx" option as "react" to enable JSX support
+    "jsx": "react"
   },
   "include": [
-    "src/**/*.tsx", // Include TypeScript files with JSX (tsx) extension
-    "src/**/*.ts"
-, "src/components/organisms/signInForm/SignInForm.jsx"  ],
+    "src/**/*.tsx",
+    "src/**/*.ts",
+  ],
   "exclude": [
     "node_modules"
   ]

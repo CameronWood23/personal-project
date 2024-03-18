@@ -1,7 +1,5 @@
 import styled from "styled-components"
 
-import Button from "../../atoms/button/Button"
-
 export const CartDropdownContainer = styled.div`
   position: absolute;
   width: 240px;
@@ -14,10 +12,6 @@ export const CartDropdownContainer = styled.div`
   top: 90px;
   right: 40px;
   z-index: 5;
-
-  ${Button} {
-    margin-top: auto;
-  }
 `
 
 export const EmptyMessage = styled.span`
