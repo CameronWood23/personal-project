@@ -1,5 +1,6 @@
+/// <reference types="react-scripts" />
 import React, { useContext } from "react"
-// import { ReactComponent as ShoppingIcon } from "../../../assets/ShoppingBagLogo.svg"
+import { ReactComponent as ShoppingIcon } from "../../../assets/ShoppingBagLogo.svg"
 import { CartContext } from "../../../context/cartContext"
 import { CartIconContainer, ItemCount } from "./cartIcon.styles"
 
@@ -10,7 +11,7 @@ const CartIcon: React.FC = () => {
 
   return (
     <CartIconContainer onClick={toggleIsCartOpen}>
-      {/* <ShoppingIcon className="shopping-icon" /> */}
+      <ShoppingIcon className="shopping-icon" />
       <ItemCount>{cartCount}</ItemCount>
     </CartIconContainer>
   )

@@ -1,6 +1,6 @@
 import React, { Fragment, useContext } from "react"
-import { Link, Outlet } from "react-router-dom"
-// import { ReactComponent as Logo } from "../../../assets/BitbucketLogo.svg"
+import { Outlet } from "react-router-dom"
+import { ReactComponent as Logo } from "../../../assets/BitbucketLogo.svg"
 import { CartContext } from "../../../context/cartContext"
 import { UserContext } from "../../../context/userContext"
 import { signOutUser } from "../../../utils/firebase/FirebaseUtils"
@@ -10,8 +10,9 @@ import CartDropdown from "../../molecules/cartDropdown/CartDropdown"
 import {
   CenteredLinks,
   LogoContainer,
-  NavigationContainer,
+  NavLinks,
   NavLinksContainer,
+  NavigationContainer,
 } from "./navigation.styles"
 
 const NavigationBar: React.FC = () => {
@@ -25,14 +26,16 @@ const NavigationBar: React.FC = () => {
   return (
     <Fragment>
       <NavigationContainer>
-        <LogoContainer to="/">{/* <Logo className="logo" /> */}</LogoContainer>
+        <LogoContainer to="/">
+          <Logo className="logo" />
+        </LogoContainer>
         <NavLinksContainer>
           <CenteredLinks>
-            <Link to="/shop">SHOP</Link>
+            <NavLinks to="/shop">SHOP</NavLinks>
             {currentUser ? (
               <span onClick={handleSignOut}>SIGN OUT</span>
             ) : (
-              <Link to="/auth">SIGN IN</Link>
+              <NavLinks to="/auth">SIGN IN</NavLinks>
             )}
             <CartIcon />
           </CenteredLinks>
