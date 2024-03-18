@@ -1,9 +1,9 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import FormInput from "../../molecules/formInput/FormInput"
 import Button, { BUTTON_TYPE_CLASSES } from "../../atoms/button/Button"
 
 import {
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../../utils/firebase/FirebaseUtils"
@@ -23,6 +23,8 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields)
   const { email, password } = formFields
 
+  const navigate = useNavigate()
+
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
   }
@@ -35,15 +37,14 @@ const SignInForm = () => {
     event.preventDefault()
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(email, password)
+      await signInAuthUserWithEmailAndPassword(email, password)
       resetFormFields()
+      navigate("/")
+      alert("Sign In Successful!")
     } catch (error) {
       switch (error.code) {
-        case "auth/wrong-password":
-          alert("Incorrect password. Please try again.")
-          break
-        case "auth/user-not-found":
-          alert("Email not found.")
+        case "auth/invalid-login-credentials":
+          alert("Incorrect Username or Password. Please try again.")
           break
         default:
           console.log(error)
