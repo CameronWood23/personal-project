@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux"
+import { setupStore } from "./redux/store.ts"
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./context/userContext";
 import { CategoriesProvider } from "./context/categoryContext";
@@ -15,7 +17,9 @@ root.render(
       <UserProvider>
         <CategoriesProvider>
         <CartProvider>
-        <App />
+        <Provider store={setupStore()}>
+      <App />
+    </Provider>
         </CartProvider>
         </CategoriesProvider>
       </UserProvider>
