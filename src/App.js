@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, RouterProvider } from "react-router-dom";
 import HomeScreen from "../src/components/screens/homeScreen/HomeScreen";
 import NavigationBar from "./components/organisms/navigationBar/NavigationBar";
 import AuthenticationScreen from "./components/screens/authenticationScreen/AuthenticationScreen";
