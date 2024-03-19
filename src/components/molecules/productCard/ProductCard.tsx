@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { CartContext } from "../../../context/cartContext"
-import Button from "../../atoms/button/Button"
+import { Button } from "../../atoms"
 import { Footer, Name, Price, ProductCartContainer } from "./productCard.styles"
 
 interface Product {

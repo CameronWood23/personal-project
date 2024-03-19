@@ -1,9 +1,8 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
-import Category from "../../organisms/category/Category"
-import CategoryPreview from "../../organisms/categoryPreview/CategoryPreview"
+import { Category, CategoryPreview } from "../../components/organisms"
 
-const ShopScreen: React.FC = () => {
+const ShopPage: React.FC = () => {
   return (
     <Routes>
       <Route index element={<CategoryPreview />} />
@@ -12,4 +11,4 @@ const ShopScreen: React.FC = () => {
   )
 }
 
-export default ShopScreen
+export default ShopPage

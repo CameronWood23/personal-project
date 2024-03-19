@@ -1,14 +1,14 @@
 import React, { useContext } from "react"
-import { CartContext } from "../../../context/cartContext"
-import CheckoutItem from "../../molecules/checkoutItem/CheckoutItem"
+import { CheckoutItem } from "../../components/molecules"
+import { CartContext } from "../../context/cartContext"
 import {
   CheckoutContainer,
   CheckoutHeader,
   HeaderBlock,
   Total,
-} from "./checkoutScreen.styles"
+} from "./checkoutPage.styles"
 
-const CheckoutScreen: React.FC = () => {
+const CheckoutPage: React.FC = () => {
   const { cartItems, cartTotal } = useContext(CartContext)
 
   return (
@@ -38,4 +38,4 @@ const CheckoutScreen: React.FC = () => {
   )
 }
 
-export default CheckoutScreen
+export default CheckoutPage

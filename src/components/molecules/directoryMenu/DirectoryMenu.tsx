@@ -1,5 +1,5 @@
 import React from "react"
-import DirectoryItem from "../directoryItem/DirectoryItem"
+import DirectoryItem from "../directoryItem"
 import { DirectoryContainer } from "./directoryMenu.styles"
 
 interface Category {

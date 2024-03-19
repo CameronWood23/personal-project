@@ -1,6 +1,6 @@
 import React from "react"
 import { Outlet } from "react-router-dom"
-import DirectoryMenu from "../../molecules/directoryMenu/DirectoryMenu"
+import { DirectoryMenu } from "../../components/molecules"
 
 const HomeScreen: React.FC = () => {
   return (
