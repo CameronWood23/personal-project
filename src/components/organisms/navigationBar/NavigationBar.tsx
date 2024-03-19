@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from "../../../assets/BitbucketLogo.svg"
 import { CartContext } from "../../../context/cartContext"
 import { UserContext } from "../../../context/userContext"
 import { signOutUser } from "../../../utils/firebase/FirebaseUtils"
-import CartIcon from "../../atoms/cartIcon/CartIcon"
+import { CartIcon } from "../../atoms"
 import { CartDropdown } from "../../molecules"
 
 import {

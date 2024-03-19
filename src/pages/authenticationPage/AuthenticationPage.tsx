@@ -1,6 +1,5 @@
 import React from "react"
-import SignInForm from "../../components/organisms/signInForm/SignInForm"
-import SignUpForm from "../../components/organisms/signUpForm/SignUpForm"
+import { SignInForm, SignUpForm } from "../../components/organisms"
 import { AuthenticationContainer } from "./authenticationPage.styles"
 
 const AuthenticationPage: React.FC = () => {

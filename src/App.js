@@ -1,9 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "../src/pages/homePage/HomePage";
-import NavigationBar from "./components/organisms/navigationBar/NavigationBar";
-import AuthenticationPage from "../src/pages/authenticationPage/AuthenticationPage";
-import ShopPage from "../src/pages/shopPage/ShopPage";
-import CheckoutPage from "../src/pages/checkoutPage/CheckoutPage";
+import { NavigationBar } from "./components/organisms";
+import {AuthenticationPage, CheckoutPage, HomePage, ShopPage} from "./pages"
 
 const App = () => {
   return (

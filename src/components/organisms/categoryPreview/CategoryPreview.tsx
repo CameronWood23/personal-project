@@ -1,6 +1,6 @@
 import React, { Fragment, useContext } from "react"
 import { CategoriesContext } from "../../../context/categoryContext"
-import CategoryRow from "../categoryRow/CategoryRow"
+import CategoryRow from "../categoryRow"
 
 const CategoryPreview: React.FC = () => {
   const { categoriesMap } = useContext(CategoriesContext)

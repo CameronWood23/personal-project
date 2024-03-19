@@ -1,7 +1,6 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
-import Category from "../../components/organisms/category/Category"
-import CategoryPreview from "../../components/organisms/categoryPreview/CategoryPreview"
+import { Category, CategoryPreview } from "../../components/organisms"
 
 const ShopPage: React.FC = () => {
   return (
