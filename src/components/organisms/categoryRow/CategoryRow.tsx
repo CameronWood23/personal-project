@@ -1,5 +1,5 @@
 import React from "react"
-import ProductCard from "../../molecules/productCard/ProductCard"
+import { ProductCard } from "../../molecules"
 import {
   CategoryContainer,
   ProductPreview,

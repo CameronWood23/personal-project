@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import CheckoutItem from "../../components/molecules/checkoutItem/CheckoutItem"
+import { CheckoutItem } from "../../components/molecules"
 import { CartContext } from "../../context/cartContext"
 import {
   CheckoutContainer,

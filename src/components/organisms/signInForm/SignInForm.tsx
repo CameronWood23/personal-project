@@ -4,8 +4,8 @@ import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../../utils/firebase/FirebaseUtils"
-import Button, { BUTTON_TYPE_CLASSES } from "../../atoms/button/Button"
-import FormInput from "../../molecules/formInput/FormInput"
+import { Button } from "../../atoms"
+import { FormInput } from "../../molecules"
 import {
   ButtonsContainer,
   SignUpContainer,

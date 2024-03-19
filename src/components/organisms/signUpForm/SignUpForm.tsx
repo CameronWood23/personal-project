@@ -3,8 +3,8 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../../utils/firebase/FirebaseUtils"
-import Button from "../../atoms/button/Button"
-import FormInput from "../../molecules/formInput/FormInput"
+import { Button } from "../../atoms"
+import { FormInput } from "../../molecules"
 import { SignUpContainer, TitleText } from "./signUpForm.styles"
 
 interface FormFields {

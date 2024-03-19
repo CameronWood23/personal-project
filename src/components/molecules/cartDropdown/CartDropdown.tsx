@@ -1,8 +1,8 @@
 import React, { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { CartContext } from "../../../context/cartContext"
-import Button from "../../atoms/button/Button"
-import CartItem from "../cartItem/CartItem"
+import { Button } from "../../atoms"
+import CartItem from "../cartItem"
 import {
   CartDropdownContainer,
   CartItems,
