@@ -1,8 +1,15 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit"
+import {
+  Action,
+  ThunkAction,
+  combineReducers,
+  configureStore,
+} from "@reduxjs/toolkit"
 import cartSlice from "./slices/cartSlice"
+import categorySlice from "./slices/categorySlice"
 
 const rootReducer = combineReducers({
   cart: cartSlice,
+  category: categorySlice,
 })
 
 export const setupStore = (preloadedState?: Partial<RootState>) => {
@@ -11,6 +18,13 @@ export const setupStore = (preloadedState?: Partial<RootState>) => {
     preloadedState,
   })
 }
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof rootReducer>

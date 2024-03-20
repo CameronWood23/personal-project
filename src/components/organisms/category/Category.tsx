@@ -1,6 +1,7 @@
-import React, { Fragment, useContext, useEffect, useState } from "react"
+import React, { Fragment, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { CategoriesContext } from "../../../context/categoryContext"
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks"
+import { fetchCategories } from "../../../redux/slices/categorySlice"
 import { ProductCard } from "../../molecules"
 import { CategoryContainer, TitleText } from "./category.styles"
 
@@ -14,16 +15,19 @@ interface Product {
 
 const Category: React.FC = () => {
   const { category } = useParams<{ category: string }>()
-  const { categoriesMap } = useContext(CategoriesContext)
   const [products, setProducts] = useState<Product[]>([])
+
+  const dispatch = useAppDispatch()
+  const categoriesMap = useAppSelector((state) => state.category.categoriesMap)
 
   useEffect(() => {
     if (category && categoriesMap[category]) {
       setProducts(categoriesMap[category])
     } else {
       setProducts([])
+      dispatch(fetchCategories())
     }
-  }, [category, categoriesMap])
+  }, [category, categoriesMap, dispatch])
 
   return (
     <Fragment>
