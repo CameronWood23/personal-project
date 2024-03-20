@@ -1,4 +1,4 @@
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
+/// <reference types="react-scripts" />
 import {
   AppBar,
   Button,
@@ -10,6 +10,7 @@ import {
 } from "@mui/material"
 import React, { useState } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
+import CooperIcon from "../../../assets/Cooper.png"
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks"
 import { updateCart } from "../../../redux/slices/cartSlice"
 import { signOutUser } from "../../../utils/firebase/FirebaseUtils"
@@ -25,6 +26,10 @@ const NavigationBar = () => {
 
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+
+  const navigateToHome = () => {
+    navigate("/")
+  }
 
   const handleSignIn = () => {
     navigate("/auth")
@@ -58,7 +63,13 @@ const NavigationBar = () => {
     <React.Fragment>
       <AppBar sx={{ background: "#063970" }}>
         <Toolbar>
-          <ShoppingCartIcon />
+          <img
+            src={CooperIcon}
+            alt="Cooper Icon"
+            style={{ height: "80px", marginRight: "20px" }}
+            onClick={navigateToHome}
+          />
+
           {isMatch ? (
             <>
               <LanguageDrawer />
