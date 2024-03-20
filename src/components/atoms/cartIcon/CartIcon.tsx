@@ -20,10 +20,15 @@ const CartIcon: React.FC = () => {
       }),
     )
 
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0,
+  )
+
   return (
     <CartIconContainer onClick={toggleCart}>
       <ShoppingIcon className="shopping-icon" />
-      <ItemCount>{cartItems.length}</ItemCount>
+      <ItemCount>{totalQuantity}</ItemCount>
     </CartIconContainer>
   )
 }
