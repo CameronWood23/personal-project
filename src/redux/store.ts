@@ -6,10 +6,12 @@ import {
 } from "@reduxjs/toolkit"
 import cartSlice from "./slices/cartSlice"
 import categorySlice from "./slices/categorySlice"
+import userSlice from "./slices/userSlice"
 
 const rootReducer = combineReducers({
   cart: cartSlice,
   category: categorySlice,
+  user: userSlice,
 })
 
 export const setupStore = (preloadedState?: Partial<RootState>) => {

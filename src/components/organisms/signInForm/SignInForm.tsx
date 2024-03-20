@@ -1,5 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useAppDispatch } from "../../../redux/hooks"
+import { fetchCurrentUser } from "../../../redux/slices/userSlice"
 import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
@@ -25,6 +27,7 @@ const defaultFormFields: FormFields = {
 const SignInForm: React.FC = () => {
   const [formFields, setFormFields] = useState<FormFields>(defaultFormFields)
   const { email, password } = formFields
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   const resetFormFields = () => {
@@ -41,6 +44,7 @@ const SignInForm: React.FC = () => {
     try {
       await signInAuthUserWithEmailAndPassword(email, password)
       resetFormFields()
+      dispatch(fetchCurrentUser())
       navigate("/")
       alert("Sign In Successful!")
     } catch (error: any) {
