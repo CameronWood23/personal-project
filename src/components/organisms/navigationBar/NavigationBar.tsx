@@ -19,7 +19,7 @@ const NavigationBar = () => {
   const currentUser = useAppSelector((state) => state.user.currentUser)
   const { isCartOpen } = useAppSelector((state) => state.cart)
 
-  const [tabValue, setTabValue] = useState()
+  const [tabValue, setTabValue] = useState(Number)
   const theme = useTheme()
   const isMatch = useMediaQuery(theme.breakpoints.down("md"))
 
@@ -28,11 +28,23 @@ const NavigationBar = () => {
 
   const handleSignIn = () => {
     navigate("/auth")
+    setTabValue(0)
+    dispatch(
+      updateCart({
+        isCartOpen: false,
+      }),
+    )
   }
 
   const handleSignOut = () => {
     signOutUser()
     alert("Sign Out Successful!")
+    setTabValue(0)
+  }
+
+  const handleTabChange = (event: any, newValue: any) => {
+    navigate(`/shop/${newValue.toLowerCase()}`)
+    setTabValue(newValue)
   }
 
   const toggleCart = () =>
@@ -57,14 +69,14 @@ const NavigationBar = () => {
                 textColor="inherit"
                 value={tabValue}
                 indicatorColor="secondary"
-                onChange={(e, value) => setTabValue(value)}
+                onChange={handleTabChange}
                 sx={{ marginRight: "auto" }}
               >
-                <Tab label="Hats" />
-                <Tab label="Jackets" />
-                <Tab label="Sneakers" />
-                <Tab label="Mens" />
-                <Tab label="Womens" />
+                <Tab label="Hats" value="Hats" />
+                <Tab label="Jackets" value="Jackets" />
+                <Tab label="Sneakers" value="Sneakers" />
+                <Tab label="Mens" value="Mens" />
+                <Tab label="Womens" value="Womens" />
               </Tabs>
               {currentUser ? (
                 <Button
