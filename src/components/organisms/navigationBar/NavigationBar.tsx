@@ -1,48 +1,102 @@
-import React, { Fragment } from "react"
-import { Outlet } from "react-router-dom"
-import { ReactComponent as Logo } from "../../../assets/BitbucketLogo.svg"
-import { useAppSelector } from "../../../redux/hooks" // Import useSelector and useDispatch hooks
-import { signOutUser } from "../../../utils/firebase/FirebaseUtils"
-import { CartIcon } from "../../atoms"
-import { CartDropdown } from "../../molecules"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import {
-  CenteredLinks,
-  LogoContainer,
-  NavLinks,
-  NavLinksContainer,
-  NavigationContainer,
-} from "./navigation.styles"
+  AppBar,
+  Button,
+  Tab,
+  Tabs,
+  Toolbar,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material"
+import React, { useState } from "react"
+import { Outlet, useNavigate } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks"
+import { updateCart } from "../../../redux/slices/cartSlice"
+import { signOutUser } from "../../../utils/firebase/FirebaseUtils"
+import { CartDropdown, LanguageDrawer } from "../../molecules"
 
-const NavigationBar: React.FC = () => {
-  const { isCartOpen } = useAppSelector((state) => state.cart)
+const NavigationBar = () => {
   const currentUser = useAppSelector((state) => state.user.currentUser)
+  const { isCartOpen } = useAppSelector((state) => state.cart)
+
+  const [tabValue, setTabValue] = useState()
+  const theme = useTheme()
+  const isMatch = useMediaQuery(theme.breakpoints.down("md"))
+
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+
+  const handleSignIn = () => {
+    navigate("/auth")
+  }
 
   const handleSignOut = () => {
     signOutUser()
+    alert("Sign Out Successful!")
   }
-  console.log(currentUser)
+
+  const toggleCart = () =>
+    dispatch(
+      updateCart({
+        isCartOpen: !isCartOpen,
+      }),
+    )
 
   return (
-    <Fragment>
-      <NavigationContainer>
-        <LogoContainer to="/">
-          <Logo className="logo" />
-        </LogoContainer>
-        <NavLinksContainer>
-          <CenteredLinks>
-            <NavLinks to="/shop">SHOP</NavLinks>
-            {currentUser ? (
-              <span onClick={handleSignOut}>SIGN OUT</span>
-            ) : (
-              <NavLinks to="/auth">SIGN IN</NavLinks>
-            )}
-            <CartIcon />
-          </CenteredLinks>
-          {isCartOpen && <CartDropdown />}
-        </NavLinksContainer>
-      </NavigationContainer>
+    <React.Fragment>
+      <AppBar sx={{ background: "#063970" }}>
+        <Toolbar>
+          <ShoppingCartIcon />
+          {isMatch ? (
+            <>
+              <LanguageDrawer />
+            </>
+          ) : (
+            <>
+              <Tabs
+                textColor="inherit"
+                value={tabValue}
+                indicatorColor="secondary"
+                onChange={(e, value) => setTabValue(value)}
+                sx={{ marginRight: "auto" }}
+              >
+                <Tab label="Hats" />
+                <Tab label="Jackets" />
+                <Tab label="Sneakers" />
+                <Tab label="Mens" />
+                <Tab label="Womens" />
+              </Tabs>
+              {currentUser ? (
+                <Button
+                  sx={{ marginLeft: "auto" }}
+                  variant="contained"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </Button>
+              ) : (
+                <Button
+                  sx={{ marginLeft: "auto" }}
+                  variant="contained"
+                  onClick={handleSignIn}
+                >
+                  Sign in
+                </Button>
+              )}
+              <Button
+                sx={{ marginLeft: "15px" }}
+                variant="contained"
+                onClick={toggleCart}
+              >
+                Checkout
+              </Button>
+            </>
+          )}
+        </Toolbar>
+      </AppBar>
+      {isCartOpen && <CartDropdown />}
       <Outlet />
-    </Fragment>
+    </React.Fragment>
   )
 }
 
