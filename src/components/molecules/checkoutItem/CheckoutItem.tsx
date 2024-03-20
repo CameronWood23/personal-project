@@ -1,5 +1,10 @@
-import React, { useContext } from "react"
-import { CartContext } from "../../../context/cartContext"
+import React from "react"
+import { useDispatch } from "react-redux"
+import {
+  addItemToCart,
+  clearItemFromCart,
+  removeItemFromCart,
+} from "../../../redux/slices/cartSlice"
 
 import {
   Arrow,
@@ -24,14 +29,12 @@ interface Props {
 }
 
 const CheckoutItem: React.FC<Props> = ({ cartItem }) => {
-  const { name, imageUrl, price, quantity } = cartItem
+  const { id, name, imageUrl, price, quantity } = cartItem
+  const dispatch = useDispatch()
 
-  const { clearItemFromCart, addItemToCart, removeItemFromCart } =
-    useContext(CartContext)
-
-  const clearItemHandler = () => clearItemFromCart(cartItem)
-  const addItemHandler = () => addItemToCart(cartItem)
-  const removeItemHandler = () => removeItemFromCart(cartItem)
+  const clearItemHandler = () => dispatch(clearItemFromCart(id))
+  const addItemHandler = () => dispatch(addItemToCart(cartItem))
+  const removeItemHandler = () => dispatch(removeItemFromCart(id))
 
   return (
     <CheckoutItemContainer>

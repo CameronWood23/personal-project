@@ -8,7 +8,6 @@ import { setupStore } from "./redux/store.ts"
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./context/userContext";
 import { CategoriesProvider } from "./context/categoryContext";
-import { CartProvider } from "./context/cartContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,11 +15,9 @@ root.render(
     <BrowserRouter>
       <UserProvider>
         <CategoriesProvider>
-        <CartProvider>
         <Provider store={setupStore()}>
       <App />
     </Provider>
-        </CartProvider>
         </CategoriesProvider>
       </UserProvider>
     </BrowserRouter>

@@ -1,8 +1,8 @@
 import React, { Fragment, useContext } from "react"
 import { Outlet } from "react-router-dom"
 import { ReactComponent as Logo } from "../../../assets/BitbucketLogo.svg"
-import { CartContext } from "../../../context/cartContext"
 import { UserContext } from "../../../context/userContext"
+import { useAppSelector } from "../../../redux/hooks"
 import { signOutUser } from "../../../utils/firebase/FirebaseUtils"
 import { CartIcon } from "../../atoms"
 import { CartDropdown } from "../../molecules"
@@ -16,8 +16,8 @@ import {
 } from "./navigation.styles"
 
 const NavigationBar: React.FC = () => {
+  const { isCartOpen } = useAppSelector((state) => state.cart)
   const { currentUser } = useContext(UserContext)
-  const { isCartOpen } = useContext(CartContext)
 
   const handleSignOut = () => {
     signOutUser()
