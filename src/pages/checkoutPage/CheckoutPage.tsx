@@ -1,6 +1,7 @@
-import React, { useContext } from "react"
+import { isEqual } from "lodash"
+import React from "react"
 import { CheckoutItem } from "../../components/molecules"
-import { CartContext } from "../../context/cartContext"
+import { useAppSelector } from "../../redux/hooks"
 import {
   CheckoutContainer,
   CheckoutHeader,
@@ -9,7 +10,13 @@ import {
 } from "./checkoutPage.styles"
 
 const CheckoutPage: React.FC = () => {
-  const { cartItems, cartTotal } = useContext(CartContext)
+  const { cartItems } = useAppSelector((state) => state.cart, isEqual)
+
+  const total = cartItems.reduce(
+    (accumulator, currentItem) =>
+      accumulator + currentItem.price * currentItem.quantity,
+    0,
+  )
 
   return (
     <CheckoutContainer>
@@ -33,7 +40,7 @@ const CheckoutPage: React.FC = () => {
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <Total>TOTAL: ${cartTotal}</Total>
+      <Total>TOTAL: ${total}</Total>
     </CheckoutContainer>
   )
 }

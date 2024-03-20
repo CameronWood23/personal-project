@@ -1,12 +1,10 @@
-import React, { Fragment, useContext } from "react"
+import React, { Fragment } from "react"
 import { Outlet } from "react-router-dom"
 import { ReactComponent as Logo } from "../../../assets/BitbucketLogo.svg"
-import { CartContext } from "../../../context/cartContext"
-import { UserContext } from "../../../context/userContext"
+import { useAppSelector } from "../../../redux/hooks" // Import useSelector and useDispatch hooks
 import { signOutUser } from "../../../utils/firebase/FirebaseUtils"
 import { CartIcon } from "../../atoms"
 import { CartDropdown } from "../../molecules"
-
 import {
   CenteredLinks,
   LogoContainer,
@@ -16,12 +14,13 @@ import {
 } from "./navigation.styles"
 
 const NavigationBar: React.FC = () => {
-  const { currentUser } = useContext(UserContext)
-  const { isCartOpen } = useContext(CartContext)
+  const { isCartOpen } = useAppSelector((state) => state.cart)
+  const currentUser = useAppSelector((state) => state.user.currentUser)
 
   const handleSignOut = () => {
     signOutUser()
   }
+  console.log(currentUser)
 
   return (
     <Fragment>

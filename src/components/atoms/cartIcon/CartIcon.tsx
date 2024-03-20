@@ -1,18 +1,34 @@
 /// <reference types="react-scripts" />
-import React, { useContext } from "react"
+import { isEqual } from "lodash"
+import React from "react"
 import { ReactComponent as ShoppingIcon } from "../../../assets/ShoppingBagLogo.svg"
-import { CartContext } from "../../../context/cartContext"
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks"
+import { updateCart } from "../../../redux/slices/cartSlice"
 import { CartIconContainer, ItemCount } from "./cartIcon.styles"
 
 const CartIcon: React.FC = () => {
-  const { isCartOpen, setIsCartOpen, cartCount } = useContext(CartContext)
+  const { isCartOpen, cartItems } = useAppSelector(
+    (state) => state.cart,
+    isEqual,
+  )
+  const dispatch = useAppDispatch()
 
-  const toggleIsCartOpen = () => setIsCartOpen(!isCartOpen)
+  const toggleCart = () =>
+    dispatch(
+      updateCart({
+        isCartOpen: !isCartOpen,
+      }),
+    )
+
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0,
+  )
 
   return (
-    <CartIconContainer onClick={toggleIsCartOpen}>
+    <CartIconContainer onClick={toggleCart}>
       <ShoppingIcon className="shopping-icon" />
-      <ItemCount>{cartCount}</ItemCount>
+      <ItemCount>{totalQuantity}</ItemCount>
     </CartIconContainer>
   )
 }
