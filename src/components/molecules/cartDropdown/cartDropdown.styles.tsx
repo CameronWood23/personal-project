@@ -14,6 +14,10 @@ export const CartDropdownContainer = styled.div`
   z-index: 5;
 `
 
+export const ButtonContainer = styled.div`
+  margin: auto;
+`
+
 export const EmptyMessage = styled.span`
   font-size: 18px;
   margin: 50px auto;

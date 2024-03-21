@@ -1,3 +1,4 @@
 import Button from "./button"
+import ButtonMUI from "./buttonMUI"
 
-export { Button }
+export { Button, ButtonMUI }
