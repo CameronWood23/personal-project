@@ -1,7 +1,7 @@
 import React from "react"
 import { useDispatch } from "react-redux"
 import { addItemToCart } from "../../../redux/slices/cartSlice"
-import { ButtonMUI } from "../../atoms"
+import { DefaultButton } from "../../atoms"
 import { Footer, Name, Price, ProductCartContainer } from "./productCard.styles"
 
 interface Product {
@@ -29,7 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <Name>{name}</Name>
         <Price>{price}</Price>
       </Footer>
-      <ButtonMUI
+      <DefaultButton
         variant="contained"
         onClick={addProductHandler}
         buttonText="Add to Cart"

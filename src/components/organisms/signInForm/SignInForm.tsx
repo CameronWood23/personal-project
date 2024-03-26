@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from "react"
+import React, { ChangeEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch } from "../../../redux/hooks"
 import { fetchCurrentUser } from "../../../redux/slices/userSlice"
@@ -6,7 +6,7 @@ import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../../utils/firebase/FirebaseUtils"
-import { Button } from "../../atoms"
+import { DefaultButton } from "../../atoms"
 import { FormInput } from "../../molecules"
 import {
   ButtonsContainer,
@@ -38,9 +38,10 @@ const SignInForm: React.FC = () => {
     await signInWithGooglePopup()
   }
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
+  const handleSubmit = async (event?: React.FormEvent<HTMLFormElement>) => {
+    if (event) {
+      event.preventDefault()
+    }
     try {
       await signInAuthUserWithEmailAndPassword(email, password)
       resetFormFields()
@@ -67,7 +68,7 @@ const SignInForm: React.FC = () => {
     <SignUpContainer>
       <TitleText>Already have an Account?</TitleText>
       <span>Sign in with your Email and Password</span>
-      <form onSubmit={handleSubmit}>
+      <form>
         <FormInput
           label="Email"
           type="email"
@@ -86,10 +87,19 @@ const SignInForm: React.FC = () => {
           value={password}
         />
         <ButtonsContainer>
-          <Button>Sign In</Button>
-          <Button buttonType={"google"} onClick={signInWithGoogle}>
-            Google Sign in
-          </Button>
+          <DefaultButton
+            variant="contained"
+            buttonText="Sign in"
+            size={"large"}
+            onClick={handleSubmit}
+          />
+          <DefaultButton
+            variant="contained"
+            onClick={signInWithGoogle}
+            buttonText="Google Sign in"
+            size={"large"}
+            sx={{ backgroundColor: "black" }}
+          />
         </ButtonsContainer>
       </form>
     </SignUpContainer>

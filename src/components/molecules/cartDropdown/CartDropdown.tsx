@@ -1,7 +1,7 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import { useAppSelector } from "../../../redux/hooks"
-import { ButtonMUI } from "../../atoms"
+import { DefaultButton } from "../../atoms"
 import CartItem from "../cartItem"
 import {
   ButtonContainer,
@@ -29,7 +29,7 @@ const CartDropdown: React.FC = () => {
         )}
       </CartItems>
       <ButtonContainer>
-        <ButtonMUI
+        <DefaultButton
           variant={"contained"}
           onClick={goToCheckoutHandler}
           buttonText={"Proceed to Checkout"}
